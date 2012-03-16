@@ -1225,7 +1225,7 @@ class spawn (object):
             compile_flags = compile_flags | re.IGNORECASE
         compiled_pattern_list = []
         for p in patterns:
-            if type(p) in str:
+            if type(p) is str:
                 compiled_pattern_list.append(re.compile(p, compile_flags))
             elif p is EOF:
                 compiled_pattern_list.append(EOF)
@@ -1386,7 +1386,7 @@ class spawn (object):
                 c = self.read_nonblocking (self.maxread, timeout)
                 freshlen = len(c)
                 time.sleep (0.0001)
-                incoming = incoming + c
+                incoming = incoming + str(c, 'UTF-8')
                 if timeout is not None:
                     timeout = end_time - time.time()
         except EOF as e:
@@ -1734,7 +1734,7 @@ class searcher_re (object):
         if self.timeout_index >= 0:
             ss.append ((self.timeout_index,'    %d: TIMEOUT' % self.timeout_index))
         ss.sort()
-        ss = zip(*ss)[1]
+        ss = list(zip(*ss))[1]
         return '\n'.join(ss)
 
     def search(self, buffer, freshlen, searchwindowsize=None):
@@ -1791,7 +1791,7 @@ def which (filename):
     # Oddly enough this was the one line that made Pexpect
     # incompatible with Python 1.5.2.
     #pathlist = p.split (os.pathsep)
-    pathlist = string.split (p, os.pathsep)
+    pathlist = p.split(os.pathsep)
 
     for path in pathlist:
         f = os.path.join(path, filename)
