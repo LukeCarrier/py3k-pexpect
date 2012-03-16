@@ -111,9 +111,9 @@ class psh (object):
                 elif type(item) is type({}):
                     dict = item
                     while(1):
-                        stimulus = dict.keys()
+                        stimulus = list(dict.keys())
                         idx = self.exp.expect_exact(stimulus, timeout)
-                        keys = dict.keys()
+                        keys = list(dict.keys())
                         respond = dict[keys[idx]]
                         if type(respond) is type({}) or type(respond) is type(()) or type(item) is type([]):
                             cmd_exp_loop(respond)

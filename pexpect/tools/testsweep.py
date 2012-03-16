@@ -34,7 +34,7 @@ def test_platform (platform_menu, platform_python_path):
 		s.sendline ('exit')
 		s.sendline ('x')
 		s.close()
-	except Exception, e:
+	except Exception as e:
 		return 'Exception in platform test: ' + str(e)
 	return RESULT
 
@@ -50,5 +50,5 @@ result = test_platform ('M', '../Python-2.3b1/python tools/testall.py')
 results.append (('M', '[Sparc - R220] Sun Solaris (8) #1', result))
 result = test_platform ('G', 'python tools/testall.py')
 results.append (('G', '[Alpha] Linux 2.2 (Debian 3.0)', result))
-print results
+print(results)
 

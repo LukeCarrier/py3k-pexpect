@@ -3,7 +3,7 @@ import pexpect
 import unittest
 import os
 import tempfile 
-import PexpectTestCase
+from . import PexpectTestCase
 
 class TestCaseLog(PexpectTestCase.PexpectTestCase):
 

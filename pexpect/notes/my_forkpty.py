@@ -80,10 +80,10 @@ def my_forkpty():
 
 pid, fd = my_forkpty ()
 if pid == 0: # child
-    print 'I am not a robot!'
+    print('I am not a robot!')
 else:
-    print '(pid, fd) = (%d, %d)' % (pid, fd)
+    print('(pid, fd) = (%d, %d)' % (pid, fd))
     time.sleep(1) # Give the child a chance to print.
-    print 'Robots always say:', os.read(fd,100)
+    print('Robots always say:', os.read(fd,100))
     os.close(fd)
 

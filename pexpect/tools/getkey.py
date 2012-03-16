@@ -23,6 +23,6 @@ def test_typing ():
     while 1:
         ch = getkey()
         s.type(ch)
-        print str(s)
-        print
+        print(str(s))
+        print()
 

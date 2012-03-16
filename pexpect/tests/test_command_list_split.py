@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import pexpect
 import unittest
-import PexpectTestCase
+from . import PexpectTestCase
 class SplitCommandLineTestCase(PexpectTestCase.PexpectTestCase):
     def testSplitSizes(self):
         assert len(pexpect.split_command_line(r'')) == 0

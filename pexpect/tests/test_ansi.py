@@ -2,7 +2,7 @@
 
 import ANSI
 import unittest
-import PexpectTestCase
+from . import PexpectTestCase
 
 write_target = 'I\'ve got a ferret sticking up my nose.                           \n' +\
 '(He\'s got a ferret sticking up his nose.)                        \n' +\

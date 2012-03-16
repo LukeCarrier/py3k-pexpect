@@ -4,7 +4,7 @@
 
 import unittest, time
 import pexpect
-import PexpectTestCase
+from . import PexpectTestCase
 
 # This isn't exactly a unit test, but it fits in nicely with the rest of the tests.
 
@@ -54,19 +54,19 @@ class PerformanceTestCase (PexpectTestCase.PexpectTestCase):
     def test_100000(self):
         start_time = time.time()
         self.plain_range (100000)
-        print "100000 calls to plain_range:", (time.time() - start_time)
+        print("100000 calls to plain_range:", (time.time() - start_time))
         start_time = time.time()
         self.window_range(100000)
-        print "100000 calls to window_range:", (time.time() - start_time)
+        print("100000 calls to window_range:", (time.time() - start_time))
         start_time = time.time()
         self.exact_range (100000)
-        print "100000 calls to exact_range:", (time.time() - start_time)
+        print("100000 calls to exact_range:", (time.time() - start_time))
         start_time = time.time()
         self.ewin_range  (100000)
-        print "100000 calls to ewin_range:", (time.time() - start_time)
+        print("100000 calls to ewin_range:", (time.time() - start_time))
         start_time = time.time()
         self.faster_range(100000)
-        print "100000 calls to faster_range:", (time.time() - start_time)
+        print("100000 calls to faster_range:", (time.time() - start_time))
 
 if __name__ == "__main__":
     unittest.main()

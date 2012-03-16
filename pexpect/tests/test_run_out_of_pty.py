@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 import pexpect
 import unittest
-import commands
+import subprocess
 import sys
-import PexpectTestCase
+from . import PexpectTestCase
 
 class ExpectTestCase(PexpectTestCase.PexpectTestCase):
     # This takes too long to run and isn't all that interesting of a test.
@@ -18,11 +18,11 @@ class ExpectTestCase(PexpectTestCase.PexpectTestCase):
         for count in range (0,10000):
                 try:
                         plist.append (pexpect.spawn('ls -l'))
-                except pexpect.ExceptionPexpect, e:
+                except pexpect.ExceptionPexpect as e:
                         for c in range (0,count):
                             plist[c].close()
                         return
-                except Exception, e:
+                except Exception as e:
                         self.fail ('Expected ExceptionPexpect. ' + str(e))
         self.fail ('Could not run out of pty devices. This may be OK.')
 

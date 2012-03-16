@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import pexpect
 import unittest
-import PexpectTestCase
+from . import PexpectTestCase
 import time
 import sys, os, signal
 

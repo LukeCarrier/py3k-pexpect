@@ -3,7 +3,7 @@ import pexpect
 import unittest
 import os
 import re
-import PexpectTestCase
+from . import PexpectTestCase
 
 testdata = 'BEGIN\nHello world\nEND'
 class TestCaseDotall(PexpectTestCase.PexpectTestCase):

@@ -16,5 +16,5 @@ def getch():
 for i in range(126):
     c = getch()
     a = ord(c) # chr(a)
-    print a
+    print(a)
 

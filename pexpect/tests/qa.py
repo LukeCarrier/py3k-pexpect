@@ -1,7 +1,7 @@
 #!/usr/bin/env python
-import commands
+import subprocess
 import signal
 
 signal.signal(signal.SIGCHLD, signal.SIG_IGN)
-print commands.getoutput('/bin/ls -l')
+print(subprocess.getoutput('/bin/ls -l'))
 

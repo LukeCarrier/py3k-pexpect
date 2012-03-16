@@ -21,4 +21,4 @@ d.read ("setup.py.template")
 for cl in d.match_lines('.*VERSION.*'):
     d.cur_line = d.cur_line.replace('VERSION', version)
 d.write("setup.py") 
-os.chmod("setup.py", 0755)
+os.chmod("setup.py", 0o755)

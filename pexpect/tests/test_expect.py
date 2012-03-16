@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 import pexpect
 import unittest
-import commands
+import subprocess
 import sys, time
-import PexpectTestCase
+from . import PexpectTestCase
 #import pdb
 
 # Many of these test cases blindly assume that sequential directory
@@ -14,7 +14,7 @@ import PexpectTestCase
 FILTER=''.join([(len(repr(chr(x)))==3) and chr(x) or '.' for x in range(256)])
 def hex_dump(src, length=16):
     result=[]
-    for i in xrange(0, len(src), length):
+    for i in range(0, len(src), length):
        s = src[i:i+length]
        hexa = ' '.join(["%02X"%ord(x) for x in s])
        printable = s.translate(FILTER)
@@ -205,7 +205,7 @@ class ExpectTestCase (PexpectTestCase.PexpectTestCase):
         assert index == 5, "index="+str(index) # Expect EOF
 
     def test_expect (self):
-        the_old_way = commands.getoutput('ls -l /bin')
+        the_old_way = subprocess.getoutput('ls -l /bin')
         p = pexpect.spawn('ls -l /bin')
         the_new_way = ''
         while 1:
@@ -220,7 +220,7 @@ class ExpectTestCase (PexpectTestCase.PexpectTestCase):
         assert the_old_way == the_new_way, hex_dump(the_new_way) + "\n" + hex_dump(the_old_way)
 
     def test_expect_exact (self):
-        the_old_way = commands.getoutput('ls -l /bin')
+        the_old_way = subprocess.getoutput('ls -l /bin')
         p = pexpect.spawn('ls -l /bin')
         the_new_way = ''
         while 1:
@@ -236,7 +236,7 @@ class ExpectTestCase (PexpectTestCase.PexpectTestCase):
         assert p.before == 'hello' and p.after == '.?'
 
     def test_expect_eof (self):
-        the_old_way = commands.getoutput('/bin/ls -l /bin')
+        the_old_way = subprocess.getoutput('/bin/ls -l /bin')
         p = pexpect.spawn('/bin/ls -l /bin')
         p.expect(pexpect.EOF) # This basically tells it to read everything. Same as pexpect.run() function.
         the_new_way = p.before
@@ -253,7 +253,7 @@ class ExpectTestCase (PexpectTestCase.PexpectTestCase):
         p = pexpect.spawn('ls -l /bin')
         try:
             p.expect('_Z_XY_XZ') # Probably never see this in ls output.
-        except pexpect.EOF, e:
+        except pexpect.EOF as e:
             pass
         else:
             self.fail ('Expected an EOF exception.')

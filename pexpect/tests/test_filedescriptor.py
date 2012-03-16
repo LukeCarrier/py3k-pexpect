@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 import fdpexpect, pexpect
 import unittest
-import PexpectTestCase
+from . import PexpectTestCase
 import sys
 import os
 
 class ExpectTestCase(PexpectTestCase.PexpectTestCase):
     def setUp(self):
-        print self.id()
+        print(self.id())
         PexpectTestCase.PexpectTestCase.setUp(self)
 
     def test_fd (self):

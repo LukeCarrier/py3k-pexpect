@@ -2,7 +2,7 @@
 import pexpect
 import unittest
 import sys, os, time
-import PexpectTestCase
+from . import PexpectTestCase
 
 class Exp_TimeoutTestCase(PexpectTestCase.PexpectTestCase):
     def test_matches_exp_timeout (self):
@@ -24,7 +24,7 @@ class Exp_TimeoutTestCase(PexpectTestCase.PexpectTestCase):
             p.sendline('Hello')
             p.expect('Hello')
             p.expect('Goodbye',timeout=5)
-        except pexpect.TIMEOUT, expTimeoutInst:
+        except pexpect.TIMEOUT as expTimeoutInst:
             assert p.match_index == None
         else:
             self.fail("Did not generate a TIMEOUT exception.")
@@ -44,7 +44,7 @@ class Exp_TimeoutTestCase(PexpectTestCase.PexpectTestCase):
             p = pexpect.spawn('cat')
             p.sendline('Hello')
             p.expect('Goodbye',timeout=5)
-        except pexpect.TIMEOUT, e:
+        except pexpect.TIMEOUT as e:
             if e.get_trace().count("pexpect.py") != 0:
                 self.fail("The TIMEOUT get_trace() referenced pexpect.py. It should only reference the caller.\n"+e.get_trace())
 
@@ -57,7 +57,7 @@ class Exp_TimeoutTestCase(PexpectTestCase.PexpectTestCase):
             p = pexpect.spawn('cat')
             p.sendline('Hello')
             nestedFunction(p)
-        except pexpect.TIMEOUT, e:
+        except pexpect.TIMEOUT as e:
             if e.get_trace().count("nestedFunction") == 0:
                 self.fail("The TIMEOUT get_trace() did not show the call to the nestedFunction function.\n" + str(e) + "\n" + e.get_trace())
 

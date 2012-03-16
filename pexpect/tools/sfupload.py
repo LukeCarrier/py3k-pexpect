@@ -23,6 +23,6 @@ child.sendline('mput pexpect-*.tar.gz')
 child.expect('ftp> ')
 child.sendline('ls pexpect*')
 child.expect('ftp> ')
-print child.before
+print(child.before)
 child.sendline('bye')
 

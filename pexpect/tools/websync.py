@@ -18,14 +18,14 @@ p.logfile_read = sys.stdout
 p.expect (pp_pattern)
 p.sendline (X)
 p.expect (pexpect.EOF)
-print p.before
+print(p.before)
 
 p = pexpect.spawn ('scp doc/clean.css doc/email.png noah@shell.sourceforge.net:/home/groups/p/pe/pexpect/htdocs/clean.css')
 p.logfile_read = sys.stdout
 p.expect (pp_pattern)
 p.sendline (X)
 p.expect (pexpect.EOF)
-print p.before
+print(p.before)
 
 #p = pexpect.spawn ('ssh noah@use-pr-shell1.sourceforge.net "cd htdocs;tar zxvf pexpect-doc.tgz"')
 #p.logfile_read = sys.stdout
@@ -39,5 +39,5 @@ p.logfile_read = sys.stdout
 p.expect (pp_pattern)
 p.sendline (X)
 p.expect (pexpect.EOF)
-print p.before
+print(p.before)
 

@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 import pexpect
 import unittest
-import commands
+import subprocess
 import sys
-import PexpectTestCase
+from . import PexpectTestCase
 
 # TODO Many of these test cases blindly assume that sequential
 # TODO listing of the /bin directory will yield the same results.
@@ -22,7 +22,7 @@ class ExpectTestCase(PexpectTestCase.PexpectTestCase):
         assert exitstatus == 1, "Exit status of 'python exit1.py' should be 1."
 
     def test_run (self):
-        the_old_way = commands.getoutput('ls -l /bin')
+        the_old_way = subprocess.getoutput('ls -l /bin')
         (the_new_way, exitstatus) = pexpect.run ('ls -l /bin', withexitstatus=1)
         the_new_way = the_new_way.replace('\r','')[:-1]
         assert the_old_way == the_new_way

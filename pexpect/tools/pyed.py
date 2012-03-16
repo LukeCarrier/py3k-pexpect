@@ -21,6 +21,7 @@ Example 2: Edit an Apache2 httpd.conf file to turn on supplemental SSL configura
 """
 
 import re
+import collections
 class pyed (object):
     def __init__ (self, new_str=None):
         if new_str is not None:
@@ -39,7 +40,7 @@ class pyed (object):
         p = re.compile (pattern)
         if end is None:
             end = len(self.lines)
-        for i in xrange (beg,end):
+        for i in range (beg,end):
             m = p.match(self.lines[i])
             if m is not None:
                 self.cur_line_num = i
@@ -53,7 +54,7 @@ class pyed (object):
         p = re.compile (pattern)
         if end is None:
             end = len(self.lines)
-        for i in xrange (end-1,beg-1,-1):
+        for i in range (end-1,beg-1,-1):
             m = p.match(self.lines[i])
             if m is not None:
                 self.cur_line_num = i
@@ -61,7 +62,7 @@ class pyed (object):
             else:
                 # force invalid line number
                 cur_line_num = None
-    def next (self):
+    def __next__ (self):
         self.cur_line_num = self.cur_line_num + 1
         if self.cur_line_num >= len(self.lines):
             self.cur_line_num = len(self.lines) - 1
@@ -74,8 +75,8 @@ class pyed (object):
     def first (self, pattern=None):
         if pattern is not None:
             try:
-                return self.match_lines(pattern).next()
-            except StopIteration, e:
+                return next(self.match_lines(pattern))
+            except StopIteration as e:
                 # force invalid line number
                 self.cur_line_num = None
                 return None
@@ -84,8 +85,8 @@ class pyed (object):
     def last (self, pattern=None):
         if pattern is not None:
             try:
-                return self.match_lines_rev(pattern).next()
-            except StopIteration, e:
+                return next(self.match_lines_rev(pattern))
+            except StopIteration as e:
                 # force invalid line number
                 self.cur_line_num = None
                 return None
@@ -108,7 +109,7 @@ class pyed (object):
         either a string filename or any object that supports "read()".
         All previous lines are lost.
         """
-        if hasattr(file_holder, 'read') and callable(file_holder.read):
+        if hasattr(file_holder, 'read') and isinstance(file_holder.read, collections.Callable):
             fin = file_holder
         else:
             fin = open (file_holder, 'rb')
@@ -120,7 +121,7 @@ class pyed (object):
         either a string filename or any object that supports "read()".
         TODO: Make write be atomic using file move instead of overwrite.
         """
-        if hasattr(file_holder, 'write') and callable(file_holder.write):
+        if hasattr(file_holder, 'write') and isinstance(file_holder.write, collections.Callable):
             fout = file_holder
         else:
             fout = open (file_holder, 'wb')

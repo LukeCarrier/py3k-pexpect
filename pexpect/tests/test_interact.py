@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 import pexpect
 import unittest
-import commands
+import subprocess
 import sys, os, time, tty
-import PexpectTestCase
-import thread
+from . import PexpectTestCase
+import _thread
 import threading
 
 def start_interact (p):
@@ -26,10 +26,10 @@ class InteractTestCase (PexpectTestCase.PexpectTestCase):
         #time.sleep(1)
         try:
             p.expect ('hELLO', timeout=4)
-        except Exception, e:
+        except Exception as e:
             p.close(force = False)
             tty.tcsetattr(p.STDIN_FILENO, tty.TCSAFLUSH, mode)
-            print str(p)
+            print(str(p))
             raise e
         p.close(force = True)
         tty.tcsetattr(p.STDIN_FILENO, tty.TCSAFLUSH, mode)

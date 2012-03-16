@@ -15,8 +15,8 @@ import os, os.path
 import sys
 
 import pexpect
-print "Testing pexpect version:", pexpect.__version__
-print "Testing pexpect revision:", pexpect.__revision__
+print("Testing pexpect version:", pexpect.__version__)
+print("Testing pexpect revision:", pexpect.__revision__)
 
 def add_tests_to_list (import_list, dirname, names):
     # Only check directories named 'tests'.
@@ -37,7 +37,7 @@ def find_modules_and_add_paths (root_path):
     for module_file in import_list:
         path, module = os.path.split(module_file)
         module_list.append (module)
-        print 'Adding:', module_file
+        print('Adding:', module_file)
         if not path in sys.path:
             sys.path.append (path)
         if not os.path.dirname(path) in sys.path:
