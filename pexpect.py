@@ -1346,7 +1346,7 @@ class spawn (object):
         This method is also useful when you don't want to have to worry about
         escaping regular expression characters that you want to match."""
 
-        if type(pattern_list) in str or pattern_list in (TIMEOUT, EOF):
+        if type(pattern_list) is str or pattern_list in (TIMEOUT, EOF):
             pattern_list = [pattern_list]
         return self.expect_loop(searcher_string(pattern_list), timeout, searchwindowsize)
 
