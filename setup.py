@@ -4,7 +4,7 @@ $Date$
 '''
 from setuptools import setup
 setup (name='pexpect',
-    version='VERSION',
+    version='2.3',
     py_modules=['pexpect', 'pxssh', 'fdpexpect', 'FSM', 'screen', 'ANSI'],
     description='Pexpect is a pure Python Expect. It allows easy control of other applications.',
     author='Noah Spurrier',
